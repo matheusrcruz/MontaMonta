@@ -168,10 +168,167 @@ public class Board extends JPanel implements KeyListener, MouseListener, MouseMo
 				g.fillRect(col * 30 + 320, row * 30 + 50, Board.blockSize, Board.blockSize);
 			}
 		}
-	}
+	}//Gerar formas na tela
 	currentShape.render(g);
+		
+	if(stopBounds.contains(mouseX, mouseY)){
+	    g.drawImage(pause.getScaledInstance(pause.getWidth()+ 3, pause.getHeight() + 3, BufferedImage.SCALE_DEFAULT), stopBounds.x + 3, stopBounds.y + 3, null); 
 	
-	
+	}else{
+	   g.drawImage(pause, stopBounds.x, stopBounds.y, null);
+		}
+	if(refreshBounds.contains(mouseX, mouseY)){
+	  g.drawImage(refresh.getScaledInstace(refresh.getWidth() + 3, refresh.getHeight() + 3,
+		BufferedImage.SCALE_DEFAULT), refreshBounds.x + 3, refreshBounds.y + 3,null);
+	 }else {
+		 g.drawImage(refresh, refreshBounds.x, refreshBounds.y, null);
+	 }  
+		//Escrever Mensagem na tela de pause no jogo
+		if(gamePaused){
+			String gamePusedString = "GAME PAUSED";
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Georgia", Font.BOLD, 30));
+			g.drawString(gamePausedString, 35, WindowGame.HEIGHT / 2);
+		}
+		if(gamerOver){
+			String gameOverString = "GAME PAUSED";
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Georgia", Font.BOLD, 30));
+			g.drawString(gamePausedString, 50, WindowGame.HEIGHT / 2);
+		}
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Georgia", Font.BOLD, 20));
+		
+		g.drawString("SCORE", WindowGame.WIDTH - 125, WindowGame.HEIGHT / 2 );
+		g.drawString(score + " ", WindowGame.WIDTH - 125, WindowGame.HEIGHT / 2 + 30 );
+		
+		g.setColor(Color.WHITE);
+		
+		for ( int i = 0; i <= boardHeight; i ++ ) {
+			g.drawLine(0, i * blockSize, boardWhidth * blockSize, i * blockSize);
+		}
+		for (int j = 0; j= boardWidth; j++) {
+			g.drawLine(j * blockSize, 0, j * blockSize, boardHeight * 30);
+		}
 	}
+	
+	public void setNextShape() {
+		int index = random.nextInt(shapes.length);
+		int colorIndex = random.nextInt(colors.length);
+		nextShape = new Shape(shape[index].getCoords(),this, colors[colorIndex]);
+	}
+	public void setCurrentShape() {
+		currentShape = nextShape;
+		setNextShape();
+		
+		for(int row = 0; row < currentShape.getCoords().length; row++){
+			for (int col = 0; col < currentShape.getCoords()[0].legth; col ++ ) {
+				if(currentShape.getCoords()[row][col] != 0) {
+					if(board[currentShape.getY() + row][currentShape.getX() + col] != null) {
+					gameOver = true;
+					}
+				}
+			}
+			
+		}
+		
+	}
+	public Color[][] getBoard(){
+		return board;
+	}
+	
+	@Override  //Ação das teclas 
+	public void keyPressed(KeyEvent e){ 
+		if (e.getKeyCode() == KeyEvent.VK_UP){
+			currentShape.rotateShape();
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		   currentShape().setDeltaX(1);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			 currentShape().setDeltaX(-1);
+		}
+		if(e.getKeyCode() == keyEvent.VK_down) {
+			currentShape.speedUp();
+		}
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			currentShape.speedDown();
+		}
+	}
+	@Override 
+	public void keyTyped(KeyEvent e){
+		
+	}
+	//iniciar jogo CHmado metodos de parar jogo proxima tela e adicionar tela tela atual fim de jogo e restarta
+    public void startGame() {
+    	stopGame();
+    	setNextShape();
+    	setCurrentShape();
+    	gameOver = false;
+    	looper.start();
+    } 
+    // parar o jogo
+	public void StopGame() {
+		score = 0 ;
+		
+		for(int row = 0; row < board.length; row++) {
+			for(int col = 0; board[row].length; col++) {
+				board[row][col] = null;
+				
+			}
+		}
+		looper.stop();
+	}
+		// Atualizar a tela e recolocar os objetos no caso peças
+		class GameLooper implements ActionListener {
+			
+			@Override
+			public void actionPerformed(ActionEvent e){
+				update();
+				repaint();
+			}
+			
+		}
+		//Ação de movimento do mouse
+		@Override
+		public void mouseDragged(MouseEvent e){
+			mouseX = e.getX();
+			mouseY = e.getY();
+			
+		}
+		//Mover? mouse ou Mudar mouse
+		@Override
+		public void mouseMoved(MouseEvent e){
+			mouseX = e.getX();
+			mouseY = e.getY();	
+		}
+		@Override
+		public void mousePressed(){
+			if(e.getButton() == MouseEvent.Button1) {
+				leftClick = true;
+				}
+			}
+		}
+	  @Override 
+	  public void mouseRelased() {
+		  if(e.getButton() == MouseEvent.BUTTON1){
+			 leftClick = false;
+		  }
+	  }
+	  @Override
+	  public public void mouseEntered(MouseEvent e) {
+	  }
+	  @Override 
+	  public void mouseExited(MouseEvent e) {  
+	  }
+	  public void addScore() {
+		 score ++; 
+	  }
 
-}
+	
+
+}//fechamento da classe 
+
