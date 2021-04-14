@@ -43,5 +43,5 @@ Equipe 4FUN –[:octocat:](https://github.com/matheusrcruz/MontaMonta/)
 
 
 ## Obrigado Equipe 4FUN sem vocês esse projeto seria nada
-👨‍💻 José Victor Paranan Roman, 👨‍💻 Matheus Rufino Cruz, 👩‍💻 Miria Andressa Santos,👩‍💻Stephany Vila Nova de Macedo .
+:man:💻 José Victor Paranan Roman, :man:💻 Matheus Rufino Cruz, :woman:💻Miria Andressa Santos,:woman:💻Stephany Vila Nova de Macedo .
 
