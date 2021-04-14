@@ -17,7 +17,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import sun.jvm.hotspot.utilities.ProcImageClassLoader;
+
 
 public class Board extends JPanel implements KeyListener, MouseListener, MouseMotionListener{
 	
@@ -140,7 +140,7 @@ public class Board extends JPanel implements KeyListener, MouseListener, MouseMo
 		}
 		
 		if(gamePaused || gameOver) {
-			return
+			return;
 		}
 		currentShape.update();
 	}
