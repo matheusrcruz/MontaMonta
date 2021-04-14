@@ -146,7 +146,7 @@ public class Board extends JPanel implements KeyListener, MouseListener, MouseMo
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
 
         for (int row = 0; row < board.length; row++) {
@@ -184,13 +184,13 @@ public class Board extends JPanel implements KeyListener, MouseListener, MouseMo
 
         if (gamePaused) {
             String gamePausedString = "GAME PAUSED";
-            g.setColor(Color.WHITE);
+            g.setColor(Color.black);
             g.setFont(new Font("Georgia", Font.BOLD, 30));
             g.drawString(gamePausedString, 35, WindowGame.HEIGHT / 2);
         }
         if (gameOver) {
             String gameOverString = "GAME OVER";
-            g.setColor(Color.WHITE);
+            g.setColor(Color.black);
             g.setFont(new Font("Georgia", Font.BOLD, 30));
             g.drawString(gameOverString, 50, WindowGame.HEIGHT / 2);
         }
@@ -201,7 +201,7 @@ public class Board extends JPanel implements KeyListener, MouseListener, MouseMo
         g.drawString("SCORE", WindowGame.WIDTH - 125, WindowGame.HEIGHT / 2);
         g.drawString(score + "", WindowGame.WIDTH - 125, WindowGame.HEIGHT / 2 + 30);
 
-        g.setColor(Color.WHITE);
+        g.setColor(Color.black);
 
         for (int i = 0; i <= boardHeight; i++) {
             g.drawLine(0, i * blockSize, boardWidth * blockSize, i * blockSize);

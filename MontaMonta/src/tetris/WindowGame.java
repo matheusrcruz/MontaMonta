@@ -11,7 +11,7 @@ public class WindowGame {
 
     public WindowGame() {
 
-        window = new JFrame("Tetris");
+        window = new JFrame("Monta-Monta");
  window. setSize(WIDTH, HEIGHT);
  window. setDefaultCloseOperation(JFrame. EXIT_ON_CLOSE);
  window. setLocationRelativeTo(null);

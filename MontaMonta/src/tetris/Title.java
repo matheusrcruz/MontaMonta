@@ -40,7 +40,7 @@ public class Title extends JPanel implements KeyListener {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		g.setColor(Color.BLACK);
+		g.setColor(Color.white);
 		
 		g.fillRect(0, 0, WindowGame.WIDTH, WindowGame.HEIGHT);
 		
@@ -48,7 +48,7 @@ public class Title extends JPanel implements KeyListener {
 		g.drawImage(instructions, WindowGame.WIDTH/2 - instructions.getWidth()/2,
 				30 - instructions.getHeight()/2 + 150, null);
 		
-                g.setColor(Color.WHITE);
+                g.setColor(Color.black);
 		g.drawString("Press space to play!", 150, WindowGame.HEIGHT / 2 + 100);
 		
 		
